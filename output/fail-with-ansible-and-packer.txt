@@ -1,0 +1,49 @@
+[master] darron@~/Desktop/ansible-visudo: packer build template.json 
+amazon-ebs output will be in this color.
+
+==> amazon-ebs: Creating temporary keypair: packer 52965ae4-c5f1-bf79-1d47-2731c9225fe6
+==> amazon-ebs: Creating temporary security group for this instance...
+==> amazon-ebs: Authorizing SSH access on the temporary security group...
+==> amazon-ebs: Launching a source AWS instance...
+==> amazon-ebs: Waiting for instance (i-4c761278) to become ready...
+==> amazon-ebs: Waiting for SSH to become available...
+==> amazon-ebs: Connected to SSH!
+==> amazon-ebs: Provisioning with Ansible...
+    amazon-ebs: Creating Ansible staging directory...
+    amazon-ebs: Creating directory: /tmp/packer-provisioner-ansible-local
+    amazon-ebs: Uploading main Playbook file...
+    amazon-ebs: Uploading role directories...
+    amazon-ebs: Creating directory: /tmp/packer-provisioner-ansible-local/roles/common
+    amazon-ebs: Executing Ansible: ansible-playbook /tmp/packer-provisioner-ansible-local/playbook.yml -c local -i "127.0.0.1,"
+    amazon-ebs:
+    amazon-ebs: PLAY [all] ********************************************************************
+    amazon-ebs:
+    amazon-ebs: TASK: [Install /etc/sudoers.tmp file.] ****************************************
+    amazon-ebs: changed: [127.0.0.1]
+    amazon-ebs:
+    amazon-ebs: TASK: [Set the permissions.] **************************************************
+    amazon-ebs: changed: [127.0.0.1]
+    amazon-ebs:
+    amazon-ebs: TASK: [Final sudoers file check] **********************************************
+    amazon-ebs: failed: [127.0.0.1] => {"changed": true, "cmd": "visudo -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers ", "delta": "0:00:00.046279", "end": "2013-11-27 20:50:40.415575", "item": "", "rc": 1, "start": "2013-11-27 20:50:40.369296"}
+    amazon-ebs: stderr: visudo: >>> /etc/sudoers.tmp: syntax error near line 29 <<<
+    amazon-ebs: stdout: parse error in /etc/sudoers.tmp near line 29
+    amazon-ebs: 
+    amazon-ebs: FATAL: all hosts have already failed -- aborting
+    amazon-ebs:
+    amazon-ebs:
+    amazon-ebs:
+    amazon-ebs: PLAY RECAP ********************************************************************
+    amazon-ebs: to retry, use: --limit @/home/ubuntu/playbook.retry
+    amazon-ebs:
+    amazon-ebs: 127.0.0.1                  : ok=2    changed=2    unreachable=0    failed=1
+    amazon-ebs:
+==> amazon-ebs: Terminating the source AWS instance...
+==> amazon-ebs: Deleting temporary security group...
+==> amazon-ebs: Deleting temporary keypair...
+Build 'amazon-ebs' errored: Error executing Ansible: Non-zero exit status: 2
+
+==> Some builds didn't complete successfully and had errors:
+--> amazon-ebs: Error executing Ansible: Non-zero exit status: 2
+
+==> Builds finished but no artifacts were created.

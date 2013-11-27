@@ -1,0 +1,22 @@
+[master] darron@~/Desktop/ansible-visudo: ansible-playbook playbook.yml 
+
+PLAY [rackspace] ************************************************************** 
+
+TASK: [Install /etc/sudoers.tmp file.] **************************************** 
+changed: [162.242.174.192]
+
+TASK: [Set the permissions.] ************************************************** 
+changed: [162.242.174.192]
+
+TASK: [Final sudoers file check] ********************************************** 
+failed: [162.242.174.192] => {"changed": true, "cmd": "visudo -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers ", "delta": "0:00:00.008214", "end": "2013-11-27 20:59:16.441246", "item": "", "rc": 1, "start": "2013-11-27 20:59:16.433032"}
+stderr: visudo: >>> /etc/sudoers.tmp: syntax error near line 29 <<<
+stdout: parse error in /etc/sudoers.tmp near line 29
+
+FATAL: all hosts have already failed -- aborting
+
+PLAY RECAP ******************************************************************** 
+           to retry, use: --limit @/Users/darron/playbook.retry
+
+162.242.174.192            : ok=2    changed=2    unreachable=0    failed=1   
+
